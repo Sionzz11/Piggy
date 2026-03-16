@@ -51,4 +51,10 @@ Thumbs.db
 
 # ── Misc ──────────────────────────────────────────────────────────────────────
 coverage/
-.nyc_output/
+.nyc_output/*.zip
+*.tar.gz
+.turbo/
+packages/contracts/out/
+packages/contracts/cache/
+**/*.tsbuildinfo
+node_modules/
