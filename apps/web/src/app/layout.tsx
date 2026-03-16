@@ -1,0 +1,36 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import { Providers }   from "./providers";
+import { PennyBubble } from "@/components/PennyBubble";
+
+// This app is fully client-side (Privy auth + DeFi hooks).
+// Disable static pre-rendering for all routes — always render dynamically.
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title:       "Piggy Sentinel — Your AI Savings Agent",
+  description: "Tell Penny your financial goal. She builds and manages the strategy automatically.",
+  icons: { icon: "/favicon.ico" },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* IBM Plex — design system fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <Providers>
+          {children}
+          <PennyBubble />
+        </Providers>
+      </body>
+    </html>
+  );
+}
