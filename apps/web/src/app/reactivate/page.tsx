@@ -18,7 +18,7 @@ const celoSepolia = defineChain({
 
 const EXECUTOR   = process.env.NEXT_PUBLIC_SENTINEL_EXECUTOR_ADDRESS as `0x${string}`;
 const USDM_ADDR  = process.env.NEXT_PUBLIC_USDM_ADDRESS as `0x${string}`;
-const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod";
+const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod" || process.env.NEXT_PUBLIC_APP_ENV === "fork";
 const CHAIN      = IS_MAINNET ? celo : celoSepolia;
 const EXPLORER   = IS_MAINNET ? "https://celo.blockscout.com/tx/" : "https://celo-sepolia.blockscout.com/tx/";
 

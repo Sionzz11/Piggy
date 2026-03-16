@@ -18,7 +18,7 @@ const celoSepolia = defineChain({
   blockExplorers: { default: { name: "Blockscout", url: "https://celo-sepolia.blockscout.com" } },
   testnet: true,
 });
-const IS_MAINNET  = process.env.NEXT_PUBLIC_APP_ENV === "prod";
+const IS_MAINNET  = process.env.NEXT_PUBLIC_APP_ENV === "prod" || process.env.NEXT_PUBLIC_APP_ENV === "fork";
 const CHAIN       = IS_MAINNET ? celo : celoSepolia;
 const RPC_URL     = IS_MAINNET ? (process.env.NEXT_PUBLIC_CELO_RPC_URL_MAINNET ?? "https://forno.celo.org") : (process.env.NEXT_PUBLIC_CELO_RPC_URL_SEPOLIA ?? "https://forno.celo-sepolia.celo.org");
 const EXPLORER    = IS_MAINNET ? "https://celo.blockscout.com/tx/" : "https://celo-sepolia.blockscout.com/tx/";

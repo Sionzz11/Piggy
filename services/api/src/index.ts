@@ -12,25 +12,14 @@ const app  = Fastify({ logger: false });
 const PORT = parseInt(process.env.API_PORT ?? "3001");
 
 async function start() {
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(",")
-    : ["http://localhost:3000"];
-
   await app.register(cors, {
-    origin: (origin, cb) => {
-      if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-        cb(null, true);
-      } else {
-        cb(new Error("Not allowed by CORS"), false);
-      }
-    },
+    origin: true,
     credentials: true,
   });
 
-  // Rate limiting — protect all routes
   await app.register(rateLimit, {
     global:    true,
-    max:       60,        // 60 requests per minute per IP
+    max:       60,
     timeWindow: "1 minute",
     errorResponseBuilder: () => ({
       error: "Too many requests — slow down",

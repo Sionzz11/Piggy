@@ -19,7 +19,7 @@ const celoSepolia = defineChain({
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const appId     = process.env.NEXT_PUBLIC_PRIVY_APP_ID!;
-  const isMainnet = process.env.NEXT_PUBLIC_APP_ENV === "prod"; // FIX: was "production"
+  const isMainnet = process.env.NEXT_PUBLIC_APP_ENV === "prod" || process.env.NEXT_PUBLIC_APP_ENV === "fork"; // FIX: was "production"
 
   return (
     <PrivyProvider

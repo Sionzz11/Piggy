@@ -17,20 +17,29 @@ const celoSepolia = defineChain({
 });
 
 const EXECUTOR   = process.env.NEXT_PUBLIC_SENTINEL_EXECUTOR_ADDRESS as `0x${string}`;
-const USDM_ADDR  = process.env.NEXT_PUBLIC_USDM_ADDRESS as `0x${string}`;
-const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod";
+const USDM_ADDR  = process.env.NEXT_PUBLIC_USDM_ADDRESS  as `0x${string}`;
+const USDC_ADDR  = process.env.NEXT_PUBLIC_USDC_ADDRESS  as `0x${string}`;
+const USDT_ADDR  = process.env.NEXT_PUBLIC_USDT_ADDRESS  as `0x${string}`;
+const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod" || process.env.NEXT_PUBLIC_APP_ENV === "fork";
 const CHAIN      = IS_MAINNET ? celo : celoSepolia;
 const EXPLORER   = IS_MAINNET ? "https://celo.blockscout.com/tx/" : "https://celo-sepolia.blockscout.com/tx/";
-const ERC20_ABI  = [{ name: "approve", type: "function", stateMutability: "nonpayable", inputs: [{ name: "spender", type: "address" }, { name: "amount", type: "uint256" }], outputs: [{ type: "bool" }] }] as const;
 
-// registerGoal ABI sudah di-import dari SENTINEL_EXECUTOR_ABI (@piggy/shared)
+const ERC20_ABI = [{ name: "approve", type: "function", stateMutability: "nonpayable", inputs: [{ name: "spender", type: "address" }, { name: "amount", type: "uint256" }], outputs: [{ type: "bool" }] }] as const;
+
+// ── Token config ──────────────────────────────────────────────────────────────
+type TokenSymbol = "USDm" | "USDC" | "USDT";
+
+const TOKENS: Record<TokenSymbol, { address: `0x${string}` | undefined; decimals: number; color: string; label: string }> = {
+  USDm:  { address: USDM_ADDR, decimals: 18, color: "#7C6EF5", label: "USDm (Mento)" },
+  USDC:  { address: USDC_ADDR, decimals: 6,  color: "#5B8DEF", label: "USDC (Circle)" },
+  USDT:  { address: USDT_ADDR, decimals: 6,  color: "#00D4A8", label: "USDT (Tether)" },
+};
 
 type Step = "goal" | "permission" | "done";
 
 function Shell({ children, step, total }: { children: React.ReactNode; step: number; total: number }) {
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", display: "flex", flexDirection: "column" }}>
-      {/* Nav */}
       <header style={{ height: 48, borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", padding: "0 24px", gap: 12 }}>
         <span style={{ fontSize: 16 }}>🐷</span>
         <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 600, color: "var(--text)" }}>
@@ -41,16 +50,10 @@ function Shell({ children, step, total }: { children: React.ReactNode; step: num
             <div style={{ height: "100%", background: "var(--green)", width: `${(step / total) * 100}%`, transition: "width 0.4s ease" }} />
           </div>
         </div>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text3)" }}>
-          {step} / {total}
-        </span>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text3)" }}>{step} / {total}</span>
       </header>
-
-      {/* Content */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "flex-start", padding: "48px 24px" }}>
-        <div style={{ width: "100%", maxWidth: 440 }} className="fade-up">
-          {children}
-        </div>
+        <div style={{ width: "100%", maxWidth: 440 }} className="fade-up">{children}</div>
       </div>
     </div>
   );
@@ -78,6 +81,35 @@ function MoneyInput({ value, onChange, placeholder }: { value: string; onChange:
   );
 }
 
+// ── Token Selector ────────────────────────────────────────────────────────────
+function TokenSelector({ value, onChange }: { value: TokenSymbol; onChange: (t: TokenSymbol) => void }) {
+  return (
+    <div style={{ display: "flex", gap: 8 }}>
+      {(Object.keys(TOKENS) as TokenSymbol[]).map(t => (
+        <button
+          key={t}
+          onClick={() => onChange(t)}
+          style={{
+            flex: 1,
+            padding: "10px 0",
+            borderRadius: 8,
+            border: value === t ? `2px solid ${TOKENS[t].color}` : "2px solid var(--border)",
+            background: value === t ? `${TOKENS[t].color}18` : "var(--card)",
+            color: value === t ? TOKENS[t].color : "var(--text2)",
+            fontFamily: "var(--mono)",
+            fontSize: 13,
+            fontWeight: 700,
+            cursor: "pointer",
+            transition: "all 0.15s ease",
+          }}
+        >
+          {t}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function EnablePage() {
   const { ready, authenticated, user, getAccessToken } = usePrivy();
   const { wallets } = useWallets();
@@ -85,6 +117,7 @@ export default function EnablePage() {
   const address = user?.wallet?.address;
 
   const [step,        setStep]        = useState<Step>("goal");
+  const [selectedToken, setSelectedToken] = useState<TokenSymbol>("USDm");
   const [goalName,    setGoalName]    = useState("");
   const [goalAmount,  setGoalAmount]  = useState("");
   const [deadline,    setDeadline]    = useState("");
@@ -99,7 +132,6 @@ export default function EnablePage() {
     if (!authenticated) router.push("/");
   }, [ready, authenticated]);
 
-  // Default deadline = 12 months from now
   useEffect(() => {
     const d = new Date(); d.setFullYear(d.getFullYear() + 1);
     setDeadline(d.toISOString().split("T")[0]);
@@ -107,8 +139,15 @@ export default function EnablePage() {
 
   const canProceed = goalAmount && parseFloat(goalAmount) > 0 && deadline && spendLimit && parseFloat(spendLimit) > 0;
 
+  const token = TOKENS[selectedToken];
+  const tokenDecimals = token.decimals;
+  const tokenAddress  = token.address;
+
+  // Currency label for display
+  const currencyLabel = selectedToken === "USDm" ? "USDm" : selectedToken;
+
   async function handleApproveAndCreate() {
-    if (!wallets[0] || !address || !EXECUTOR || !USDM_ADDR) {
+    if (!wallets[0] || !address || !EXECUTOR || !tokenAddress) {
       setError("Wallet or contract not configured"); return;
     }
     setApproving(true); setError(null);
@@ -116,9 +155,9 @@ export default function EnablePage() {
       const provider = await wallets[0].getEthereumProvider();
       const client   = createWalletClient({ account: address as `0x${string}`, chain: CHAIN, transport: custom(provider) });
 
-      const approvalAmount = parseUnits(spendLimit, 18);
+      const approvalAmount = parseUnits(spendLimit, tokenDecimals);
       const hash = await client.writeContract({
-        address: USDM_ADDR, abi: ERC20_ABI,
+        address: tokenAddress, abi: ERC20_ABI,
         functionName: "approve", args: [EXECUTOR, approvalAmount],
       });
       setTxHash(hash);
@@ -129,37 +168,33 @@ export default function EnablePage() {
         address: EXECUTOR, abi: SENTINEL_EXECUTOR_ABI,
         functionName: "registerGoal",
         args: [
-          USDM_ADDR,                        // asset: USDm
-          parseUnits(goalAmount, 18),        // amount: principal
-          parseUnits(goalAmount, 18),        // goalTarget
-          deadlineTs,                        // goalDeadline
-          parseUnits(spendLimit, 18),        // spendLimit
-          BigInt(30 * 86400),               // epochDuration: 30 days (monthly) — FIX #7
-          10_000n,                           // stableBps: 100% stable
-          0n,                               // lpBps: 0%
-          0n,                               // wethBps: 0%
+          tokenAddress,
+          parseUnits(goalAmount, tokenDecimals),  // amount: principal
+          parseUnits(goalAmount, tokenDecimals),  // goalTarget
+          deadlineTs,
+          parseUnits(spendLimit, tokenDecimals),  // spendLimit
+          BigInt(30 * 86400),                     // epochDuration: 30 days
+          10_000n,                                // stableBps: 100%
+          0n,
+          0n,
         ],
       });
 
       setApproving(false);
       setCreating(true);
 
-      // FIX #8: get Privy token, pass to all API calls
-      const token = await getAccessToken();
-
-      const result = await api.createGoal(token, {
+      const accessToken = await getAccessToken();
+      const result = await api.createGoal(accessToken, {
         agentWalletAddress: EXECUTOR,
-        targetAmount:       parseUnits(goalAmount, 18).toString(),
-        targetCurrency:     "USDm",
+        targetAmount:       parseUnits(goalAmount, tokenDecimals).toString(),
+        targetCurrency:     currencyLabel,
         deadlineDate:       deadline,
-        spendLimit:         parseUnits(spendLimit, 18).toString(),
+        spendLimit:         parseUnits(spendLimit, tokenDecimals).toString(),
         goalName:           goalName || undefined,
       });
 
-      // FIX #8: use actual goalId from createGoal response, not "latest"
-      await api.activateGoal(token, result.goal.id);
+      await api.activateGoal(accessToken, result.goal.id);
       setStep("done");
-      // Auto redirect ke dashboard setelah 2 detik
       setTimeout(() => router.push("/dashboard"), 2000);
     } catch (err) {
       setError((err as Error).message);
@@ -191,9 +226,10 @@ export default function EnablePage() {
         <div className="card" style={{ padding: "16px", marginBottom: 24, textAlign: "left" }}>
           {[
             { l: "Goal",        v: goalName || "Savings Goal" },
-            { l: "Target",      v: `$${goalAmount} USDm` },
+            { l: "Token",       v: currencyLabel },
+            { l: "Target",      v: `$${goalAmount} ${currencyLabel}` },
             { l: "Deadline",    v: deadline },
-            { l: "Spend limit", v: `$${spendLimit} USDm / month` },
+            { l: "Spend limit", v: `$${spendLimit} ${currencyLabel} / month` },
           ].map(row => (
             <div className="card-row" key={row.l}>
               <span style={{ fontSize: 11, color: "var(--text3)", fontFamily: "var(--mono)" }}>{row.l}</span>
@@ -229,10 +265,10 @@ export default function EnablePage() {
       <div className="card" style={{ padding: "16px", marginBottom: 20 }}>
         {[
           { l: "Goal",       v: goalName || "Savings Goal" },
-          { l: "Target",     v: `$${goalAmount} USDm` },
+          { l: "Token",      v: currencyLabel },
+          { l: "Target",     v: `$${goalAmount} ${currencyLabel}` },
           { l: "Deadline",   v: deadline },
-          { l: "Spend limit per epoch", v: `$${spendLimit} USDm` },
-          { l: "Token",      v: "USDm (1 approval only)" },
+          { l: "Spend limit per epoch", v: `$${spendLimit} ${currencyLabel}` },
           { l: "Contract",   v: EXECUTOR ? `${EXECUTOR.slice(0, 8)}…${EXECUTOR.slice(-6)}` : "not configured" },
         ].map(row => (
           <div className="card-row" key={row.l}>
@@ -279,7 +315,11 @@ export default function EnablePage() {
           placeholder="e.g. Emergency fund, New laptop…" className="input" />
       </Field>
 
-      <Field label="Target amount (USDm)">
+      <Field label="Deposit token">
+        <TokenSelector value={selectedToken} onChange={setSelectedToken} />
+      </Field>
+
+      <Field label={`Target amount (${currencyLabel})`}>
         <MoneyInput value={goalAmount} onChange={setGoalAmount} placeholder="1000" />
       </Field>
 
@@ -288,7 +328,7 @@ export default function EnablePage() {
       </Field>
 
       <Field
-        label="Spend limit per month (USDm)"
+        label={`Spend limit per month (${currencyLabel})`}
         hint="Max Piggy can pull from your wallet per 30-day epoch. Enforced on-chain."
       >
         <MoneyInput value={spendLimit} onChange={setSpendLimit} placeholder="200" />

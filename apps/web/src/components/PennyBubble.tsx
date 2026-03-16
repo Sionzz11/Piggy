@@ -13,7 +13,7 @@ const celoSepolia = defineChain({
   testnet: true,
 });
 
-const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod";
+const IS_MAINNET = process.env.NEXT_PUBLIC_APP_ENV === "prod" || process.env.NEXT_PUBLIC_APP_ENV === "fork";
 const CHAIN      = IS_MAINNET ? celo : celoSepolia;
 
 // ERC20 transfer ABI
