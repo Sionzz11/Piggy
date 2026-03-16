@@ -3,8 +3,16 @@
 > @piggy/contracts@0.1.0 build /workspaces/Piggy/packages/contracts
 > forge build
 
-[2K[1m[[32m⠃[0m][0m Compiling...[2K[1m[[32m⠊[0m][0m Compiling...[2K[1m[[32m⠒[0m][0m Compiling...[2K[1m[[32m⠢[0m][0m Compiling...[2K[1m[[32m⠆[0m][0m Compiling...[2K[1m[[32m⠰[0m][0m Compiling...[2K[1m[[32m⠔[0m][0m Compiling...
+[2K[1m[[32m⠃[0m][0m Compiling...[2K[1m[[32m⠊[0m][0m Compiling...[2K[1m[[32m⠒[0m][0m Compiling...[2K[1m[[32m⠢[0m][0m Compiling...
 No files changed, compilation skipped
+[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
+ [1m[94m--> [0msrc/libraries/SafeERC20.sol:4:8
+  [1m[94m|[0m
+[1m[94m4[0m [1m[94m|[0m import "../interfaces/IERC20.sol";
+  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
+
 [1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
  [1m[94m--> [0msrc/SentinelExecutor.sol:4:8
   [1m[94m|[0m
@@ -42,102 +50,6 @@ No files changed, compilation skipped
   [1m[94m|[0m
 [1m[94m8[0m [1m[94m|[0m import "./libraries/SafeERC20.sol";
   [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
-  [1m[94m|[0m
-  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:101:20
-    [1m[94m|[0m
-[1m[94m101[0m [1m[94m|[0m     address public wETH;
-    [1m[94m|[0m                    [1m[92m^^^^[0m [1m[92mhelp: consider using: `wEth`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[pascal-case-struct][0m[1m: structs should use PascalCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:174:12
-    [1m[94m|[0m
-[1m[94m174[0m [1m[94m|[0m     struct LPPosition {
-    [1m[94m|[0m            [1m[92m^^^^^^^^^^[0m [1m[92mhelp: consider using: `LpPosition`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#pascal-case-struct\https://book.getfoundry.sh/reference/forge/forge-lint#pascal-case-struct]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:177:17
-    [1m[94m|[0m
-[1m[94m177[0m [1m[94m|[0m         uint256 entryValueUSD;
-    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `entryValueUsd`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:228:68
-    [1m[94m|[0m
-[1m[94m228[0m [1m[94m|[0m     event LPEntered(address indexed user, uint256 tokenId, uint256 valueUSD);
-    [1m[94m|[0m                                                                    [1m[92m^^^^^^^^[0m [1m[92mhelp: consider using: `valueUsd`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:447:40
-    [1m[94m|[0m
-[1m[94m447[0m [1m[94m|[0m     function setVolatileAssets(address _wETH) external onlyOwner {
-    [1m[94m|[0m                                        [1m[92m^^^^^[0m [1m[92mhelp: consider using: `_wEth`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-function][0m[1m: function names should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:698:14
-    [1m[94m|[0m
-[1m[94m698[0m [1m[94m|[0m     function executeUniswapLP(
-    [1m[94m|[0m              [1m[92m^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `executeUniswapLp`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:706:17
-    [1m[94m|[0m
-[1m[94m706[0m [1m[94m|[0m         uint256 totalValueUSD,
-    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `totalValueUsd`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:707:17
-    [1m[94m|[0m
-[1m[94m707[0m [1m[94m|[0m         uint256 totalPortfolioUSD
-    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `totalPortfolioUsd`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:724:17
-    [1m[94m|[0m
-[1m[94m724[0m [1m[94m|[0m         uint256 userMaxLPBps = alloc.lpAllocationBps > 0
-    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `userMaxLpBps`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:728:17
-    [1m[94m|[0m
-[1m[94m728[0m [1m[94m|[0m         uint256 newLPTotal = _totalLPValue(userWallet) + totalValueUSD;
-    [1m[94m|[0m                 [1m[92m^^^^^^^^^^[0m [1m[92mhelp: consider using: `newLpTotal`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:729:17
-    [1m[94m|[0m
-[1m[94m729[0m [1m[94m|[0m         uint256 maxLP      = (totalPortfolioUSD * userMaxLPBps) / BPS_DENOMINATOR;
-    [1m[94m|[0m                 [1m[92m^^^^^[0m [1m[92mhelp: consider using: `maxLp`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
- [1m[94m--> [0msrc/libraries/SafeERC20.sol:4:8
-  [1m[94m|[0m
-[1m[94m4[0m [1m[94m|[0m import "../interfaces/IERC20.sol";
-  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
   [1m[94m|[0m
   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
 
@@ -236,6 +148,94 @@ No files changed, compilation skipped
   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
 
 [1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:101:20
+    [1m[94m|[0m
+[1m[94m101[0m [1m[94m|[0m     address public wETH;
+    [1m[94m|[0m                    [1m[92m^^^^[0m [1m[92mhelp: consider using: `wEth`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[pascal-case-struct][0m[1m: structs should use PascalCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:174:12
+    [1m[94m|[0m
+[1m[94m174[0m [1m[94m|[0m     struct LPPosition {
+    [1m[94m|[0m            [1m[92m^^^^^^^^^^[0m [1m[92mhelp: consider using: `LpPosition`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#pascal-case-struct\https://book.getfoundry.sh/reference/forge/forge-lint#pascal-case-struct]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:177:17
+    [1m[94m|[0m
+[1m[94m177[0m [1m[94m|[0m         uint256 entryValueUSD;
+    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `entryValueUsd`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:228:68
+    [1m[94m|[0m
+[1m[94m228[0m [1m[94m|[0m     event LPEntered(address indexed user, uint256 tokenId, uint256 valueUSD);
+    [1m[94m|[0m                                                                    [1m[92m^^^^^^^^[0m [1m[92mhelp: consider using: `valueUsd`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:447:40
+    [1m[94m|[0m
+[1m[94m447[0m [1m[94m|[0m     function setVolatileAssets(address _wETH) external onlyOwner {
+    [1m[94m|[0m                                        [1m[92m^^^^^[0m [1m[92mhelp: consider using: `_wEth`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-function][0m[1m: function names should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:698:14
+    [1m[94m|[0m
+[1m[94m698[0m [1m[94m|[0m     function executeUniswapLP(
+    [1m[94m|[0m              [1m[92m^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `executeUniswapLp`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:706:17
+    [1m[94m|[0m
+[1m[94m706[0m [1m[94m|[0m         uint256 totalValueUSD,
+    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `totalValueUsd`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:707:17
+    [1m[94m|[0m
+[1m[94m707[0m [1m[94m|[0m         uint256 totalPortfolioUSD
+    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `totalPortfolioUsd`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:724:17
+    [1m[94m|[0m
+[1m[94m724[0m [1m[94m|[0m         uint256 userMaxLPBps = alloc.lpAllocationBps > 0
+    [1m[94m|[0m                 [1m[92m^^^^^^^^^^^^[0m [1m[92mhelp: consider using: `userMaxLpBps`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:728:17
+    [1m[94m|[0m
+[1m[94m728[0m [1m[94m|[0m         uint256 newLPTotal = _totalLPValue(userWallet) + totalValueUSD;
+    [1m[94m|[0m                 [1m[92m^^^^^^^^^^[0m [1m[92mhelp: consider using: `newLpTotal`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:729:17
+    [1m[94m|[0m
+[1m[94m729[0m [1m[94m|[0m         uint256 maxLP      = (totalPortfolioUSD * userMaxLPBps) / BPS_DENOMINATOR;
+    [1m[94m|[0m                 [1m[92m^^^^^[0m [1m[92mhelp: consider using: `maxLp`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
    [1m[94m--> [0msrc/SentinelExecutor.sol:738:21
     [1m[94m|[0m
 [1m[94m738[0m [1m[94m|[0m             uint256 volatileUSD   = _toUSD(volatileToken, volatileAmt);
@@ -296,132 +296,6 @@ No files changed, compilation skipped
 [1m[94m47[0m [92m+     }[0m
    [1m[94m|[0m
    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:276:5
-    [1m[94m|[0m
-[1m[94m276[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyOwner() {
-[1m[94m277[0m [1m[94m|[0m [1m[92m|[0m         if (msg.sender != owner) revert NotOwner();
-[1m[94m278[0m [1m[94m|[0m [1m[92m|[0m         _;
-[1m[94m279[0m [1m[94m|[0m [1m[92m|[0m     }
-    [1m[94m|[0m [1m[92m|_____^[0m
-    [1m[94m|[0m
-[1m[96mhelp[0m: wrap modifier logic to reduce code size
-    [1m[94m|[0m
-[1m[94m276[0m [92m~ [0m    [92mmodifier onlyOwner() {[0m
-[1m[94m277[0m [92m+         _onlyOwner();[0m
-[1m[94m278[0m [92m+         _;[0m
-[1m[94m279[0m [92m+     }[0m
-[1m[94m280[0m [92m+ [0m
-[1m[94m281[0m [92m+     function _onlyOwner() internal {[0m
-[1m[94m282[0m [92m+         if (msg.sender != owner) revert NotOwner();[0m
-[1m[94m283[0m [92m+     }[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:281:5
-    [1m[94m|[0m
-[1m[94m281[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyAgent() {
-[1m[94m282[0m [1m[94m|[0m [1m[92m|[0m         if (msg.sender != agentSigner) revert NotAgent();
-[1m[94m283[0m [1m[94m|[0m [1m[92m|[0m         _;
-[1m[94m284[0m [1m[94m|[0m [1m[92m|[0m     }
-    [1m[94m|[0m [1m[92m|_____^[0m
-    [1m[94m|[0m
-[1m[96mhelp[0m: wrap modifier logic to reduce code size
-    [1m[94m|[0m
-[1m[94m281[0m [92m~ [0m    [92mmodifier onlyAgent() {[0m
-[1m[94m282[0m [92m+         _onlyAgent();[0m
-[1m[94m283[0m [92m+         _;[0m
-[1m[94m284[0m [92m+     }[0m
-[1m[94m285[0m [92m+ [0m
-[1m[94m286[0m [92m+     function _onlyAgent() internal {[0m
-[1m[94m287[0m [92m+         if (msg.sender != agentSigner) revert NotAgent();[0m
-[1m[94m288[0m [92m+     }[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:286:5
-    [1m[94m|[0m
-[1m[94m286[0m [1m[94m|[0m [1m[92m/[0m     modifier whenNotPaused() {
-[1m[94m287[0m [1m[94m|[0m [1m[92m|[0m         if (paused) revert ContractPaused();
-[1m[94m288[0m [1m[94m|[0m [1m[92m|[0m         _;
-[1m[94m289[0m [1m[94m|[0m [1m[92m|[0m     }
-    [1m[94m|[0m [1m[92m|_____^[0m
-    [1m[94m|[0m
-[1m[96mhelp[0m: wrap modifier logic to reduce code size
-    [1m[94m|[0m
-[1m[94m286[0m [92m~ [0m    [92mmodifier whenNotPaused() {[0m
-[1m[94m287[0m [92m+         _whenNotPaused();[0m
-[1m[94m288[0m [92m+         _;[0m
-[1m[94m289[0m [92m+     }[0m
-[1m[94m290[0m [92m+ [0m
-[1m[94m291[0m [92m+     function _whenNotPaused() internal {[0m
-[1m[94m292[0m [92m+         if (paused) revert ContractPaused();[0m
-[1m[94m293[0m [92m+     }[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:291:5
-    [1m[94m|[0m
-[1m[94m291[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyWhitelisted(address asset) {
-[1m[94m292[0m [1m[94m|[0m [1m[92m|[0m         if (!whitelistedAssets[asset]) revert AssetNotWhitelisted(asset);
-[1m[94m293[0m [1m[94m|[0m [1m[92m|[0m         _;
-[1m[94m294[0m [1m[94m|[0m [1m[92m|[0m     }
-    [1m[94m|[0m [1m[92m|_____^[0m
-    [1m[94m|[0m
-[1m[96mhelp[0m: wrap modifier logic to reduce code size
-    [1m[94m|[0m
-[1m[94m291[0m [92m~ [0m    [92mmodifier onlyWhitelisted(address asset) {[0m
-[1m[94m292[0m [92m+         _onlyWhitelisted(asset);[0m
-[1m[94m293[0m [92m+         _;[0m
-[1m[94m294[0m [92m+     }[0m
-[1m[94m295[0m [92m+ [0m
-[1m[94m296[0m [92m+     function _onlyWhitelisted(address asset) internal {[0m
-[1m[94m297[0m [92m+         if (!whitelistedAssets[asset]) revert AssetNotWhitelisted(asset);[0m
-[1m[94m298[0m [92m+     }[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:296:5
-    [1m[94m|[0m
-[1m[94m296[0m [1m[94m|[0m [1m[92m/[0m     modifier userNotPaused(address user) {
-[1m[94m297[0m [1m[94m|[0m [1m[92m|[0m         if (positions[user].userPaused) revert UserPositionPaused(user);
-[1m[94m298[0m [1m[94m|[0m [1m[92m|[0m         _;
-[1m[94m299[0m [1m[94m|[0m [1m[92m|[0m     }
-    [1m[94m|[0m [1m[92m|_____^[0m
-    [1m[94m|[0m
-[1m[96mhelp[0m: wrap modifier logic to reduce code size
-    [1m[94m|[0m
-[1m[94m296[0m [92m~ [0m    [92mmodifier userNotPaused(address user) {[0m
-[1m[94m297[0m [92m+         _userNotPaused(user);[0m
-[1m[94m298[0m [92m+         _;[0m
-[1m[94m299[0m [92m+     }[0m
-[1m[94m300[0m [92m+ [0m
-[1m[94m301[0m [92m+     function _userNotPaused(address user) internal {[0m
-[1m[94m302[0m [92m+         if (positions[user].userPaused) revert UserPositionPaused(user);[0m
-[1m[94m303[0m [92m+     }[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
-
-[1m[92mnote[named-struct-fields][0m[1m: prefer initializing structs with named fields[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:482:29
-    [1m[94m|[0m
-[1m[94m482[0m [1m[94m|[0m         defaultAllocation = StrategyAllocation(stableBps, lpBps, wethBps);
-    [1m[94m|[0m                             [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using named fields: `StrategyAllocation({ stableAllocationBps: stableBps, lpAllocationBps: lpBps, wethAllocationBps: wethBps })`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields\https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields]8;;\
-
-[1m[92mnote[named-struct-fields][0m[1m: prefer initializing structs with named fields[0m
-   [1m[94m--> [0msrc/SentinelExecutor.sol:533:39
-    [1m[94m|[0m
-[1m[94m533[0m [1m[94m|[0m             allocations[msg.sender] = StrategyAllocation(stableBps, lpBps, wethBps);
-    [1m[94m|[0m                                       [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using named fields: `StrategyAllocation({ stableAllocationBps: stableBps, lpAllocationBps: lpBps, wethAllocationBps: wethBps })`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields\https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields]8;;\
 
 [1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
  [1m[94m--> [0msrc/adapters/UniswapAdapter.sol:5:8
@@ -564,30 +438,6 @@ No files changed, compilation skipped
    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
 
 [1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
- [1m[94m--> [0mtest/SentinelExecutor.t.sol:4:8
-  [1m[94m|[0m
-[1m[94m4[0m [1m[94m|[0m import "forge-std/Test.sol";
-  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^[0m
-  [1m[94m|[0m
-  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
-
-[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
- [1m[94m--> [0mtest/SentinelExecutor.t.sol:5:8
-  [1m[94m|[0m
-[1m[94m5[0m [1m[94m|[0m import "../src/SentinelExecutor.sol";
-  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
-  [1m[94m|[0m
-  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
-
-[1m[92mnote[mixed-case-function][0m[1m: function names should use mixedCase[0m
-   [1m[94m--> [0mtest/SentinelExecutor.t.sol:573:14
-    [1m[94m|[0m
-[1m[94m573[0m [1m[94m|[0m     function _setupLP() internal returns (uint256 tokenId) {
-    [1m[94m|[0m              [1m[92m^^^^^^^^[0m [1m[92mhelp: consider using: `_setupLp`[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function]8;;\
-
-[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
  [1m[94m--> [0mtest/ForkFullFlow.t.sol:4:8
   [1m[94m|[0m
 [1m[94m4[0m [1m[94m|[0m import "forge-std/Test.sol";
@@ -634,6 +484,180 @@ No files changed, compilation skipped
   [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
   [1m[94m|[0m
   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
+
+[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:276:5
+    [1m[94m|[0m
+[1m[94m276[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyOwner() {
+[1m[94m277[0m [1m[94m|[0m [1m[92m|[0m         if (msg.sender != owner) revert NotOwner();
+[1m[94m278[0m [1m[94m|[0m [1m[92m|[0m         _;
+[1m[94m279[0m [1m[94m|[0m [1m[92m|[0m     }
+    [1m[94m|[0m [1m[92m|_____^[0m
+    [1m[94m|[0m
+[1m[96mhelp[0m: wrap modifier logic to reduce code size
+    [1m[94m|[0m
+[1m[94m276[0m [92m~ [0m    [92mmodifier onlyOwner() {[0m
+[1m[94m277[0m [92m+         _onlyOwner();[0m
+[1m[94m278[0m [92m+         _;[0m
+[1m[94m279[0m [92m+     }[0m
+[1m[94m280[0m [92m+ [0m
+[1m[94m281[0m [92m+     function _onlyOwner() internal {[0m
+[1m[94m282[0m [92m+         if (msg.sender != owner) revert NotOwner();[0m
+[1m[94m283[0m [92m+     }[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
+
+[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:281:5
+    [1m[94m|[0m
+[1m[94m281[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyAgent() {
+[1m[94m282[0m [1m[94m|[0m [1m[92m|[0m         if (msg.sender != agentSigner) revert NotAgent();
+[1m[94m283[0m [1m[94m|[0m [1m[92m|[0m         _;
+[1m[94m284[0m [1m[94m|[0m [1m[92m|[0m     }
+    [1m[94m|[0m [1m[92m|_____^[0m
+    [1m[94m|[0m
+[1m[96mhelp[0m: wrap modifier logic to reduce code size
+    [1m[94m|[0m
+[1m[94m281[0m [92m~ [0m    [92mmodifier onlyAgent() {[0m
+[1m[94m282[0m [92m+         _onlyAgent();[0m
+[1m[94m283[0m [92m+         _;[0m
+[1m[94m284[0m [92m+     }[0m
+[1m[94m285[0m [92m+ [0m
+[1m[94m286[0m [92m+     function _onlyAgent() internal {[0m
+[1m[94m287[0m [92m+         if (msg.sender != agentSigner) revert NotAgent();[0m
+[1m[94m288[0m [92m+     }[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
+
+[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:286:5
+    [1m[94m|[0m
+[1m[94m286[0m [1m[94m|[0m [1m[92m/[0m     modifier whenNotPaused() {
+[1m[94m287[0m [1m[94m|[0m [1m[92m|[0m         if (paused) revert ContractPaused();
+[1m[94m288[0m [1m[94m|[0m [1m[92m|[0m         _;
+[1m[94m289[0m [1m[94m|[0m [1m[92m|[0m     }
+    [1m[94m|[0m [1m[92m|_____^[0m
+    [1m[94m|[0m
+[1m[96mhelp[0m: wrap modifier logic to reduce code size
+    [1m[94m|[0m
+[1m[94m286[0m [92m~ [0m    [92mmodifier whenNotPaused() {[0m
+[1m[94m287[0m [92m+         _whenNotPaused();[0m
+[1m[94m288[0m [92m+         _;[0m
+[1m[94m289[0m [92m+     }[0m
+[1m[94m290[0m [92m+ [0m
+[1m[94m291[0m [92m+     function _whenNotPaused() internal {[0m
+[1m[94m292[0m [92m+         if (paused) revert ContractPaused();[0m
+[1m[94m293[0m [92m+     }[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
+
+[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:291:5
+    [1m[94m|[0m
+[1m[94m291[0m [1m[94m|[0m [1m[92m/[0m     modifier onlyWhitelisted(address asset) {
+[1m[94m292[0m [1m[94m|[0m [1m[92m|[0m         if (!whitelistedAssets[asset]) revert AssetNotWhitelisted(asset);
+[1m[94m293[0m [1m[94m|[0m [1m[92m|[0m         _;
+[1m[94m294[0m [1m[94m|[0m [1m[92m|[0m     }
+    [1m[94m|[0m [1m[92m|_____^[0m
+    [1m[94m|[0m
+[1m[96mhelp[0m: wrap modifier logic to reduce code size
+    [1m[94m|[0m
+[1m[94m291[0m [92m~ [0m    [92mmodifier onlyWhitelisted(address asset) {[0m
+[1m[94m292[0m [92m+         _onlyWhitelisted(asset);[0m
+[1m[94m293[0m [92m+         _;[0m
+[1m[94m294[0m [92m+     }[0m
+[1m[94m295[0m [92m+ [0m
+[1m[94m296[0m [92m+     function _onlyWhitelisted(address asset) internal {[0m
+[1m[94m297[0m [92m+         if (!whitelistedAssets[asset]) revert AssetNotWhitelisted(asset);[0m
+[1m[94m298[0m [92m+     }[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
+
+[1m[92mnote[unwrapped-modifier-logic][0m[1m: wrap modifier logic to reduce code size[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:296:5
+    [1m[94m|[0m
+[1m[94m296[0m [1m[94m|[0m [1m[92m/[0m     modifier userNotPaused(address user) {
+[1m[94m297[0m [1m[94m|[0m [1m[92m|[0m         if (positions[user].userPaused) revert UserPositionPaused(user);
+[1m[94m298[0m [1m[94m|[0m [1m[92m|[0m         _;
+[1m[94m299[0m [1m[94m|[0m [1m[92m|[0m     }
+    [1m[94m|[0m [1m[92m|_____^[0m
+    [1m[94m|[0m
+[1m[96mhelp[0m: wrap modifier logic to reduce code size
+    [1m[94m|[0m
+[1m[94m296[0m [92m~ [0m    [92mmodifier userNotPaused(address user) {[0m
+[1m[94m297[0m [92m+         _userNotPaused(user);[0m
+[1m[94m298[0m [92m+         _;[0m
+[1m[94m299[0m [92m+     }[0m
+[1m[94m300[0m [92m+ [0m
+[1m[94m301[0m [92m+     function _userNotPaused(address user) internal {[0m
+[1m[94m302[0m [92m+         if (positions[user].userPaused) revert UserPositionPaused(user);[0m
+[1m[94m303[0m [92m+     }[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic\https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic]8;;\
+
+[1m[92mnote[named-struct-fields][0m[1m: prefer initializing structs with named fields[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:482:29
+    [1m[94m|[0m
+[1m[94m482[0m [1m[94m|[0m         defaultAllocation = StrategyAllocation(stableBps, lpBps, wethBps);
+    [1m[94m|[0m                             [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using named fields: `StrategyAllocation({ stableAllocationBps: stableBps, lpAllocationBps: lpBps, wethAllocationBps: wethBps })`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields\https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields]8;;\
+
+[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
+ [1m[94m--> [0mtest/SentinelExecutor.t.sol:4:8
+  [1m[94m|[0m
+[1m[94m4[0m [1m[94m|[0m import "forge-std/Test.sol";
+  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
+
+[1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
+ [1m[94m--> [0mtest/SentinelExecutor.t.sol:5:8
+  [1m[94m|[0m
+[1m[94m5[0m [1m[94m|[0m import "../src/SentinelExecutor.sol";
+  [1m[94m|[0m        [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
+
+[1m[92mnote[mixed-case-function][0m[1m: function names should use mixedCase[0m
+   [1m[94m--> [0mtest/SentinelExecutor.t.sol:573:14
+    [1m[94m|[0m
+[1m[94m573[0m [1m[94m|[0m     function _setupLP() internal returns (uint256 tokenId) {
+    [1m[94m|[0m              [1m[92m^^^^^^^^[0m [1m[92mhelp: consider using: `_setupLp`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function]8;;\
+
+[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
+   [1m[94m--> [0mtest/SentinelExecutor.t.sol:695:17
+    [1m[94m|[0m
+[1m[94m695[0m [1m[94m|[0m         address newWETH = makeAddr("newWETH");
+    [1m[94m|[0m                 [1m[92m^^^^^^^[0m [1m[92mhelp: consider using: `newWeth`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
+
+[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
+  [1m[94m--> [0mtest/SentinelExecutor.t.sol:88:9
+   [1m[94m|[0m
+[1m[94m88[0m [1m[94m|[0m         MockERC20(asset).transferFrom(msg.sender, address(this), amount);
+   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
+
+[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
+  [1m[94m--> [0mtest/SentinelExecutor.t.sol:95:9
+   [1m[94m|[0m
+[1m[94m95[0m [1m[94m|[0m         MockERC20(aTokenMap[asset]).transferFrom(msg.sender, address(this), amount);
+   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
+
+[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
+   [1m[94m--> [0mtest/SentinelExecutor.t.sol:113:9
+    [1m[94m|[0m
+[1m[94m113[0m [1m[94m|[0m         MockERC20(fromAsset).transferFrom(msg.sender, address(this), amountIn);
+    [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
 
 [1m[92mnote[unaliased-plain-import][0m[1m: use named imports '{A, B}' or alias 'import ".." as X'[0m
  [1m[94m--> [0mscript/Deploy.s.sol:4:8
@@ -683,35 +707,11 @@ No files changed, compilation skipped
   [1m[94m|[0m
   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import\https://book.getfoundry.sh/reference/forge/forge-lint#unaliased-plain-import]8;;\
 
-[1m[92mnote[mixed-case-variable][0m[1m: mutable variables should use mixedCase[0m
-   [1m[94m--> [0mtest/SentinelExecutor.t.sol:695:17
+[1m[92mnote[named-struct-fields][0m[1m: prefer initializing structs with named fields[0m
+   [1m[94m--> [0msrc/SentinelExecutor.sol:533:39
     [1m[94m|[0m
-[1m[94m695[0m [1m[94m|[0m         address newWETH = makeAddr("newWETH");
-    [1m[94m|[0m                 [1m[92m^^^^^^^[0m [1m[92mhelp: consider using: `newWeth`[0m
+[1m[94m533[0m [1m[94m|[0m             allocations[msg.sender] = StrategyAllocation(stableBps, lpBps, wethBps);
+    [1m[94m|[0m                                       [1m[92m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[92mhelp: consider using named fields: `StrategyAllocation({ stableAllocationBps: stableBps, lpAllocationBps: lpBps, wethAllocationBps: wethBps })`[0m
     [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable\https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable]8;;\
-
-[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
-  [1m[94m--> [0mtest/SentinelExecutor.t.sol:88:9
-   [1m[94m|[0m
-[1m[94m88[0m [1m[94m|[0m         MockERC20(asset).transferFrom(msg.sender, address(this), amount);
-   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
-   [1m[94m|[0m
-   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
-
-[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
-  [1m[94m--> [0mtest/SentinelExecutor.t.sol:95:9
-   [1m[94m|[0m
-[1m[94m95[0m [1m[94m|[0m         MockERC20(aTokenMap[asset]).transferFrom(msg.sender, address(this), amount);
-   [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
-   [1m[94m|[0m
-   [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
-
-[1m[33mwarning[erc20-unchecked-transfer][0m[1m: ERC20 'transfer' and 'transferFrom' calls should check the return value[0m
-   [1m[94m--> [0mtest/SentinelExecutor.t.sol:113:9
-    [1m[94m|[0m
-[1m[94m113[0m [1m[94m|[0m         MockERC20(fromAsset).transferFrom(msg.sender, address(this), amountIn);
-    [1m[94m|[0m         [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
-    [1m[94m|[0m
-    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer\https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer]8;;\
+    [1m[94m= [0m[1mhelp[0m: ]8;;https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields\https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields]8;;\
 
